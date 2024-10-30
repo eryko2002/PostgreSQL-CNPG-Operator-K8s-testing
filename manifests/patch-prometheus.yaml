@@ -1,0 +1,4 @@
+spec:
+  podMonitorSelector:
+    matchLabels:
+      cnpg.io/cluster: postgres1 # Replace "postgres1" with the value of your CLUSTER_NAME if needed

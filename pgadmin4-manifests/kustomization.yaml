@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  app: pgadmin4
+
+resources:
+  - secret-credentials-pgadmin4.yaml
+  - deployment-pgadmin4.yaml
+  - service-pgadmin4.yaml
+

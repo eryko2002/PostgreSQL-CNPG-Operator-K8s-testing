@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: ${CLUSTER_NAME}  # Using the variable for the cluster name
+  namespace: ${NS_CLUSTER}  # Using the variable for the namespace
+  labels:
+    cnpg.io/cluster: ${CLUSTER_NAME}  # Using the variable for the cluster label
+spec:
+  namespaceSelector:
+    matchNames:
+      - ${NS_CLUSTER}  # Using the variable for the namespace
+  selector:
+    matchLabels:
+      cnpg.io/cluster: ${CLUSTER_NAME}  # Using the variable for the cluster label
+  podMetricsEndpoints:
+  - port: metrics  # Replace this with the actual port name if needed
+

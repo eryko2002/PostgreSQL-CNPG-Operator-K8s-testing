@@ -1,0 +1,7 @@
+export CLUSTER_NAME="postgres1"
+export NS_CLUSTER="cnpg-cluster"
+export SUPER_USER="postgres"
+export USER="student"
+export DATABASE="example_db"
+export SCRIPT_INIT="$(pwd)/sql-scripts/init.sql"
+export SCRIPT_TABLESPACE="$(pwd)/sql-scripts/check-partitions-to-tablespaces.sql"

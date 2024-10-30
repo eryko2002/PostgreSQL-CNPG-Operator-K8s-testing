@@ -1,0 +1,87 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres1
+spec:
+  description: "My example pg cluster"
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.1
+
+  instances: 2
+  
+  affinity:
+    enablePodAntiAffinity: true # Default value
+    topologyKey: kubernetes.io/hostname # Default value
+    podAntiAffinityType: preferred # Default value
+
+  certificates:
+    serverCASecret: my-postgresql-server-ca
+    serverTLSSecret: my-postgresql-server
+
+  superuserSecret:
+    name: pg-superuser
+  enableSuperuserAccess: true
+
+  startDelay: 30
+  stopDelay: 100
+  primaryUpdateStrategy: unsupervised
+
+  logLevel: debug
+
+  postgresql:
+    parameters:
+      max_connections: '200'
+      shared_buffers: '256MB'
+      effective_cache_size: '768MB'
+      maintenance_work_mem: '64MB'
+      checkpoint_completion_target: '0.9'
+      wal_buffers: '7864kB'
+      default_statistics_target: '100'
+      random_page_cost: '1.1'
+      effective_io_concurrency: '200'
+      work_mem: '655kB'
+      huge_pages: 'off'
+      min_wal_size: '1GB'
+      max_wal_size: '4GB'
+
+    pg_hba:
+    - host all all 192.168.3.0/24 scram-sha-256
+
+  bootstrap:
+    initdb:
+      database: example_db
+      owner: student
+      secret:
+        name: pg-appuser
+      postInitApplicationSQL:
+        - create schema example_db_schema
+  
+  resources:
+    requests:
+      memory: "500Mi"  # Minimum memory request
+      cpu: "350m"    # Request half a CPU
+    limits:
+      memory: "1Gi"  # Maximum memory limit per instance
+      cpu: "700m"       # Limit CPU usage to 2 cores per instance
+
+  storage:
+    size: 1Gi
+    storageClass: "local-path"
+  #walStorage:
+  #  size: 1Gi
+  #  storageClass: "local-path"
+  tablespaces:
+    - name: tablespace1
+      storage:
+        size: 300Mi
+        storageClass: local-path
+    - name: tablespace2
+      storage:
+        size: 300Mi
+        storageClass: local-path
+    - name: tablespace3
+      storage:
+        size: 300Mi
+        storageClass: local-path
+
+  monitoring:
+    enablePodMonitor: false   #For our scenario we manually create podMonitor resource!
