@@ -23,7 +23,7 @@ This guide provides instructions to deploy a PostgreSQL cluster on Kubernetes us
    ```bash
    source variables.sh
    sudo chmod +x ./cnpg-operator/install-helm-cnpg-operator.sh
-   sudo chmod +x ./cnpg-operator/uninstall-helm-cnpg-operator
+   sudo chmod +x ./cnpg-operator/uninstall-helm-cnpg-operator.sh
    sudo chmod +x ns-cnpg-cluster-create.sh 
    sudo chmod +x create-certs-and-secrets.sh 
    sudo chmod +x run-cnpg-cluster.sh 
