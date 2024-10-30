@@ -1,0 +1,17 @@
+
+# -- Affinity for the operator to be installed.
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+
+tolerations:
+  - key: "node-role.kubernetes.io/control-plane"
+    operator: "Exists"
+    effect: "NoSchedule"
+  - key: "node.cilium.io/agent-not-ready"
+    operator: "Exists"
+    effect: "NoSchedule"
