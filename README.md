@@ -6,7 +6,7 @@ This guide provides instructions to deploy a PostgreSQL cluster on Kubernetes us
 
 - Kubernetes cluster is set up and accessible
 - `kubectl` installed and configured
-- CNPG Operator installed on the cluster
+- Helm installed 
 
 ## Setup Steps
 
@@ -22,6 +22,7 @@ This guide provides instructions to deploy a PostgreSQL cluster on Kubernetes us
    Set the permissions for each script to ensure they are executable.
    ```bash
    source variables.sh
+   sudo chmod +x ./cnpg-operator/install-helm-cnpg-operator.sh
    sudo chmod +x ns-cnpg-cluster-create.sh 
    sudo chmod +x create-certs-and-secrets.sh 
    sudo chmod +x run-cnpg-cluster.sh 
@@ -34,22 +35,28 @@ This guide provides instructions to deploy a PostgreSQL cluster on Kubernetes us
    ```
 ## Run scenario
 
-   Now, run each script in the specified order to complete the setup.
-### Step 0: Create namespace for cnpg cluster
+Now, run each script in the specified order to complete the setup.
+
+### Step 1: Create namespace for cnpg cluster
 ```bash
 ./ns-cnpg-cluster-create.sh 
 ```
-### Step 1: Create certificates and secrets for the PostgreSQL cluster.
+### Step 2: Install CNPG Operator using Helm
+```bash
+./cnpg-operator/install-helm-cnpg-operator.sh
+```
+
+### Step 3: Create certificates and secrets for the PostgreSQL cluster.
 ```bash
 ./create-certs-and-secrets.sh
 ```
 
-### Step 2: Deploy the PostgreSQL cluster using the CNPG Operator.
+### Step 4: Deploy the PostgreSQL cluster using the CNPG Operator.
 ``` bash
 ./run-cnpg-cluster.sh
 ```
 
-### Step 3: Connect to the PostgreSQL cluster.
+### Step 5: Connect to the PostgreSQL cluster.
 The psql-connect-cluster.sh script helps you connect to the PostgreSQL cluster in different modes. Follow these steps:
 
 #### Run the Script
@@ -166,4 +173,8 @@ cloud-native-pg-observability/grafana-dashboard.json
 ### Step 4: Clean up the cluster resources (optional)
 ```bash
 ./cleanup-cnpg-cluster.sh
+```
+### Step 5: Uninstall CNPG Operator (optional)
+```bash
+./cnpg-operator/uninstall-helm-cnpg-operator.sh
 ```
