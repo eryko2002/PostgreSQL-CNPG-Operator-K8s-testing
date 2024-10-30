@@ -85,7 +85,7 @@ Let's log into postgreSQL DB through psql and do some queries in postgresql conn
 
 ![psql-command-exec](pngs/psql-command-exec.png)
 
-### Configure PGAdmin - GUI for PostgreSQL DB
+### Step 6: Configure PGAdmin - GUI for PostgreSQL DB
 
 #### Execute the following bash script. It runs secret,deployment,service resources required to launch pgadmin4 web application
 ```bash
@@ -120,7 +120,7 @@ Let's execute some queries:
 
 ![query-exec-adminpg4](pngs/query-exec-adminpg4.png)
 
-### Configure Observability for CNPG Cluster (optional)
+### Step 7: Configure Observability for CNPG Cluster (optional)
 #### Install Prometheus using Helm - Optional
 ```bash
 ./cloud-native-pg-observability/kube-prometheus-stack/install-kube-prometheus-stack-helm.sh
@@ -171,11 +171,11 @@ To set up monitoring for your CNPG (Cloud Native PostgreSQL) cluster, follow the
 cloud-native-pg-observability/grafana-dashboard.json
 ```
 
-### Step 4: Clean up the cluster resources (optional)
+### Step 8: Clean up the cluster resources (optional)
 ```bash
 ./cleanup-cnpg-cluster.sh
 ```
-### Step 5: Uninstall CNPG Operator (optional)
+### Step 9: Uninstall CNPG Operator (optional)
 ```bash
 ./cnpg-operator/uninstall-helm-cnpg-operator.sh
 ```
