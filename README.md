@@ -1,4 +1,4 @@
-# CNPG Operator PostgreSQL -cluster installation in K8s
+# Installing the CNPG PostgreSQL Operator and CNPG Cluster in K8s
 
 This guide provides instructions to deploy a PostgreSQL cluster on Kubernetes using the CNPG Operator. Follow these steps in the specified order for a successful setup.
 
