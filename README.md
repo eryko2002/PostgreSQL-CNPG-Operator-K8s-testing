@@ -121,7 +121,7 @@ Let's execute some queries:
 ![query-exec-adminpg4](pngs/query-exec-adminpg4.png)
 
 ### Step 7: Configure Observability for CNPG Cluster (optional)
-#### Install Prometheus with Grafana using Helm
+#### Install Prometheus and Grafana using Helm
 ```bash
 ./cloud-native-pg-observability/kube-prometheus-stack/install-kube-prometheus-stack-helm.sh
 ```
