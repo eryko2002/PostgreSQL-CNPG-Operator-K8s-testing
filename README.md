@@ -9,22 +9,13 @@ This guide provides instructions to deploy a PostgreSQL cluster on Kubernetes us
 - Helm installed 
 
 ## Setup Steps
-1. **Install Local Path Provisioner**
-```bash
-sudo chmod +x local-path-provisioner/install-local-path-provisioner.sh
-./local-path-provisioner/install-local-path-provisioner.sh
-```
-2. **Install psql client**
-```bash
-sudo chmod +x install-libraries/install-psql-client.sh
-./install-libraries/install-psql-client.sh
-```
-
-3. **Make All Required .sh Files Executable**
+1. **Make All Required .sh Files Executable**
 
    Set the permissions for each script to ensure they are executable.
    ```bash
    source variables.sh
+   sudo chmod +x local-path-provisioner/install-local-path-provisioner.sh
+   sudo chmod +x install-libraries/install-psql-client.sh
    sudo chmod +x ./cnpg-operator/install-helm-cnpg-operator.sh
    sudo chmod +x ./cnpg-operator/uninstall-helm-cnpg-operator.sh
    sudo chmod +x ns-cnpg-cluster-create.sh 
@@ -37,6 +28,15 @@ sudo chmod +x install-libraries/install-psql-client.sh
    sudo chmod +x ./cloud-native-pg-observability/kube-prometheus-stack/install-kube-prometheus-stack-helm.sh
    sudo chmod +x cleanup-cnpg-cluster.sh 
    ```
+2. **Install Local Path Provisioner**
+```bash
+./local-path-provisioner/install-local-path-provisioner.sh
+```
+3. **Install psql client**
+```bash
+./install-libraries/install-psql-client.sh
+```
+
 ## Run scenario
 
 Now, run each script in the specified order to complete the setup.
