@@ -108,7 +108,7 @@ Type the following in your web browser:
 http://$IP_PGADMIN4:$PORT_PGADMIN4/
 ```
 Replace <IP_PGADMIN4> and <PORT_PGADMIN4> with the values you obtained from the commands above.
-
+Login data for pgadmin4: email: admin@admin.com, password: admin
 When you are on pgadmin4 website, then firstly you have to register your server. Type the following data:
 - Hostname/address=Cluster IP address of postgres service with read-write methods
 
