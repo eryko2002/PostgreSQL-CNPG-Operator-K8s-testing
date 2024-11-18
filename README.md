@@ -14,14 +14,8 @@ This guide provides instructions to deploy a PostgreSQL cluster on Kubernetes us
 sudo chmod +x install-libraries/install-psql-client.sh
 ./install-libraries/install-psql-client.sh
 ```
-2. **Create Namespace**
 
-   First, create the namespace where the PostgreSQL cluster resources will reside.
-
-   ```bash
-   kubectl create -f manifests/ns-cnpg-cluster.yaml
-   ```
-3. **Make All Required .sh Files Executable**
+2. **Make All Required .sh Files Executable**
 
    Set the permissions for each script to ensure they are executable.
    ```bash
