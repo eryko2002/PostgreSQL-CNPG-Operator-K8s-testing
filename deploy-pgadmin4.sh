@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#load variables
+# Load variables
 source variables.sh
 
 # Set the namespace variable
@@ -14,4 +14,10 @@ cd pgadmin4-manifests/
 kubectl kustomize . | kubectl apply -n $NAMESPACE -f -
 cd ../
 
-kubectl get all -n cnpg-cluster -l app=pgadmin4
+# Wait until all pgadmin pods are ready
+echo "Waiting for pgadmin pods to be ready..."
+kubectl wait --for=condition=ready pod -l app=pgadmin4 -n $NAMESPACE --timeout=300s
+
+# Get the status of all resources
+kubectl get all -n $NAMESPACE -l app=pgadmin4
+
