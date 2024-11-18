@@ -9,13 +9,18 @@ This guide provides instructions to deploy a PostgreSQL cluster on Kubernetes us
 - Helm installed 
 
 ## Setup Steps
-1. **Install psql client**
+1. **Install Local Path Provisioner**
+```bash
+sudo chmod +x local-path-provisioner/install-local-path-provisioner.sh
+./local-path-provisioner/install-local-path-provisioner.sh
+```
+2. **Install psql client**
 ```bash
 sudo chmod +x install-libraries/install-psql-client.sh
 ./install-libraries/install-psql-client.sh
 ```
 
-2. **Make All Required .sh Files Executable**
+3. **Make All Required .sh Files Executable**
 
    Set the permissions for each script to ensure they are executable.
    ```bash
