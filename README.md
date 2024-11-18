@@ -14,8 +14,8 @@ This guide provides instructions to deploy a PostgreSQL cluster on Kubernetes us
    Set the permissions for each script to ensure they are executable.
    ```bash
    source variables.sh
-   sudo chmod +x local-path-provisioner/install-local-path-provisioner.sh
-   sudo chmod +x install-libraries/install-psql-client.sh
+   sudo chmod +x install-prerequisties/install-local-path-provisioner.sh
+   sudo chmod +x install-prerequisties/install-psql-client.sh
    sudo chmod +x ./cnpg-operator/install-helm-cnpg-operator.sh
    sudo chmod +x ./cnpg-operator/uninstall-helm-cnpg-operator.sh
    sudo chmod +x ns-cnpg-cluster-create.sh 
@@ -30,11 +30,11 @@ This guide provides instructions to deploy a PostgreSQL cluster on Kubernetes us
    ```
 2. **Install Local Path Provisioner**
 ```bash
-./local-path-provisioner/install-local-path-provisioner.sh
+./install-prerequisties/install-local-path-provisioner.sh
 ```
 3. **Install psql client**
 ```bash
-./install-libraries/install-psql-client.sh
+./install-prerequisties/install-psql-client.sh
 ```
 
 ## Run scenario
