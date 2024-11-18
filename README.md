@@ -100,6 +100,7 @@ Let's log into postgreSQL DB through psql and do some queries in postgresql conn
 ```bash
 export IP_PGADMIN4=$(kubectl get nodes master -ojsonpath='{.status.addresses[0].address}')
 export PORT_PGADMIN4=$(kubectl get svc/pgadmin -n $NS_CLUSTER -ojsonpath='{.spec.ports[0].nodePort}')
+echo $IP_PGADMIN4:$PORT_PGADMIN4
 ```
 ##### Open PGAdmin4 App in your browser:
 Type the following in your web browser: 
