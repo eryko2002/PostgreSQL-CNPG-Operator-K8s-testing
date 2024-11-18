@@ -27,25 +27,25 @@ echo "Select an option:"
 echo "1: Execute SQL file and remain logged in"
 echo "2: Log into the database interactively"
 echo "3: Drop the created table from the database"
-echo "4: Display all indexes from every table"
-read -p "Enter your choice (1, 2, 3, or 4): " choice
+echo "4: Check partitions and tablespaces"
+read -p "Enter your choice (1, 2, 3 or 4): " choice
 
 case $choice in
     1)
         echo "Executing SQL file..."
         psql -h $RW_SERVICE_IP -U $DB_USER -d $DATABASE < $SCRIPT_INIT
         echo "SQL file executed successfully."
-
+        
         # Remain logged in after executing the SQL file
         echo "You are now logged into the database."
         psql -h $RW_SERVICE_IP -U $DB_USER -d $DATABASE
         ;;
-
+        
     2)
         echo "Logging into the database..."
         psql -h $RW_SERVICE_IP -U $DB_USER -d $DATABASE
         ;;
-
+        
     3)
         # Prompt for the table names to drop, separated by spaces
         read -p "Enter the names of the tables to drop (separated by spaces, default: facts): " table_names
@@ -56,7 +56,7 @@ case $choice in
         if [[ -z "$table_names" || "$table_names" == "all" ]]; then
             # If no input is given or "all" is entered, drop all tables
             echo "No specific table names provided. Dropping all tables in the database..."
-
+            
             # Generate the DROP TABLE command for all tables in the database
             drop_commands=$(psql -h $RW_SERVICE_IP -U $DB_USER -d $DATABASE -t -c "
                 SELECT string_agg('DROP TABLE IF EXISTS ' || tablename || ';', ' ')
@@ -89,15 +89,12 @@ case $choice in
         psql -h $RW_SERVICE_IP -U $DB_USER -d $DATABASE -c "$drop_commands"
         echo "Tables dropped successfully."
         ;;
-
     4)
-        echo "Displaying all indexes from every table..."
-        # Load and execute the SQL script that identifies all indexes
-        psql -h $RW_SERVICE_IP -U $DB_USER -d $DATABASE -f ./sql-scripts/identify-all-indexes.sql
+        echo "Checking existing partitions and tablespaces..."
+        psql -h $RW_SERVICE_IP -U $DB_USER -d $DATABASE < $SCRIPT_TABLESPACE
         ;;
 
     *)
-        echo "Invalid choice. Please select 1, 2, 3, or 4."
+        echo "Invalid choice. Please select 1, 2, or 3."
         ;;
 esac
-
